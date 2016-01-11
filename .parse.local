@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Ribbon": {
+      "applicationId": "nhFykJoUL5INlggaBWAYf99p7xeu06bOuyhc4iSx"
+    },
+    "_default": {
+      "link": "Ribbon"
+    }
+  }
+}
