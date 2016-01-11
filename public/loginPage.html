@@ -73,9 +73,7 @@
 
     $("#login").submit(function(event) {
       event.preventDefault();
-      Parse.Cloud.run("emailExists").then(function(users) {
-        console.log(users);
-      });
+
       console.log("login CLICKED");
       var name = $("#login-name").val();
       var password = $("#login-password").val();
@@ -96,6 +94,10 @@
       event.preventDefault();
       var name = $("#signup-name").val();
       var password = $("#signup-password").val();
+
+      Parse.Cloud.run("emailExists", {username: name}).then(function(users) {
+        console.log(users);
+      });
 
       var user = new Parse.User();
       user.set("username", name);
