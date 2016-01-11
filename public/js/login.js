@@ -9,19 +9,13 @@ $("#email").submit(function(event) {
   //validate username
   console.log("login CLICKED");
   event.preventDefault();
-  var name = $("#login-name").val();
-
-  query.find({
-    success: function(result){
-      console.log(result);
-    },
-    error: function (error) {
-      console.log(error);
-    }
+  var name = $("#login-email").val();
+  console.log(name);
+  // Parse.cloud
+  Parse.Cloud.run("emailExists", {username: name}).then(function(exists) {
+    console.log("user exists:", exists);
   });
   $("form").toggleClass("hidden");
-
-
 
     // var password = $("#login-password").val();
     //
