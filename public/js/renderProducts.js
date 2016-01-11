@@ -1,5 +1,5 @@
 var renderProducts = (function() {
-  Parse.initialize("nhFykJoUL5INlggaBWAYf99p7xeu06bOuyhc4iSx", "8xjV4an8FK3OngCErKac7l3OlZntb4w1NtDfNtVZ");
+  
   var Products = Parse.Object.extend("gifts");
   var query = new Parse.Query(Products);
 
