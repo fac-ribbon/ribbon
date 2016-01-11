@@ -1,0 +1,124 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+</head>
+
+<body>
+  <div id="main">
+
+    <div id="current-user"></div>
+
+    <h1>Log Out</h1>
+    <div>
+      <button id="logout">Log Out</button>
+    </div>
+    <h1>welcome to ribbon</h1>
+    <h1> Log in</h1>
+    <form id="login">
+      <p>
+        <input id="login-name" placeholder="Username" type="text">
+      </p>
+      <p>
+        <input id="login-password" placeholder="Password" type="password">
+      </p>
+      <p>
+        <input id="login-submit" type="submit">
+      </p>
+    </form>
+    <h1> Sign Up</h1>
+    <form id="signup">
+      <p>
+        <input id="signup-name" placeholder="Username" type="text">
+      </p>
+      <p>
+        <input id="signup-password" placeholder="Password" type="password">
+      </p>
+      <p>
+        <input id="signup-submit" type="submit">
+      </p>
+    </form>
+
+  </div>
+
+  <script type="text/javascript">
+    Parse.initialize("nhFykJoUL5INlggaBWAYf99p7xeu06bOuyhc4iSx", "8xjV4an8FK3OngCErKac7l3OlZntb4w1NtDfNtVZ");
+    //var Buy = Parse.Object.extend("Buy");
+    console.log("initialized");
+
+    function checkLogin(){
+      if(Parse.User.current()){
+        //console.log("Logged in! "+Parse.User.current().get("username"));
+        $("#current-user").html("User: " + Parse.User.current().get("username"))
+      } else{
+        $("#current-user").html("Not logged in");
+      }
+    }
+    checkLogin();
+
+    $("#logout").click(function(event){
+      Parse.User.logOut();
+      checkLogin();
+    })
+
+    $("#login").submit(function(event) {
+      console.log("login CLICKED");
+      event.preventDefault();
+      var name = $("#login-name").val();
+      var password = $("#login-password").val();
+
+      Parse.User.logIn(name, password, {
+        success: function(user) {
+          console.log("LogIn success", user);
+          checkLogin();
+        },
+        error: function(user, error) {
+          console.log("Login error", error.message);
+        }
+      });
+    })
+
+    $("#signup").submit(function(event) {
+      console.log("SIGNUP CLICKED");
+      event.preventDefault();
+      var name = $("#signup-name").val();
+      var password = $("#signup-password").val();
+
+      var user = new Parse.User();
+      user.set("username", name);
+      user.set("password", password);
+      user.signUp(null, {
+        success: function(user) {
+          console.log("Login success", user);
+          checkLogin();
+        },
+        error: function(user, error) {
+          console.log("signup error", error.message);
+        }
+      });
+    })
+
+
+    // var newBuy = new Buy();
+    // newBuy.set("gift", "No4");
+    // newBuy.set("message", "I want this to arrive at 6th July 2015");
+    // newBuy.save({
+    //   success: function() {
+    //     console.log("success");
+    //   },
+    //   error: function() {
+    //     console.log("error", error.message);
+    //   }
+    // })
+  </script>
+</body>
+
+</html>
