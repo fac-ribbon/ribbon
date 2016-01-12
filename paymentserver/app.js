@@ -7,7 +7,7 @@ var server = http.createServer(function(request, response) {
   if (request.url === '/') {
     response.end('hello, world');
   }
-  if (request.url === "/pay" && request.type === 'POST') {
+  if (request.url === "/pay" && request.method === 'POST') {
     getBody(request, function(body) {
       console.log(body);
     })
