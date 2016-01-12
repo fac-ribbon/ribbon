@@ -8,7 +8,7 @@ var server = http.createServer(function(request, response) {
     response.end('hello, world');
   } else if (request.url === "/pay" && request.method === 'POST') {
     getBody(request, function(body) {
-      response.setHeader('Access-Control-Allow-Origin', 'https://ribbonmvp.parseapp.com'
+      response.setHeader('Access-Control-Allow-Origin', 'https://ribbonmvp.parseapp.com');
       console.log(body);
       response.end('have your token back:', body);
     })
