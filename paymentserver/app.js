@@ -2,8 +2,6 @@ var http = require('http');
 
 var stripe = require('stripe')("sk_test_1vv56eBruuqP9YPX5avhlK8o");
 
-
-
 var port = process.env.PORT || 2000;
 
 var chargeObj = paymentData => ({
@@ -26,7 +24,7 @@ var server = http.createServer(function(request, response) {
         if (err && err.type === 'StripeCardError') {
           response.end('error!, payment not accepted', err);
         } else {
-          response.end('payment success');
+          response.end('payment success' + err.toString() + charge.toString());
         }
       });
     });
