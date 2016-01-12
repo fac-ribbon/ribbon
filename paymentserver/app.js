@@ -5,7 +5,7 @@ var stripe = require('stripe')("sk_test_1vv56eBruuqP9YPX5avhlK8o");
 var port = process.env.PORT || 2000;
 
 var chargeObj = paymentData => ({
-  amount: 20, // paymentData.amount
+  amount: 40, // paymentData.amount
   currency: "gbp",
   source: paymentData.token,
   description: "example charge" //paymentData.example
