@@ -4,16 +4,16 @@ var stripe = require('stripe')("sk_test_1vv56eBruuqP9YPX5avh1Ko");
 
 var port = process.env.PORT || 2000;
 
-var chargeObj = paymentData => {
+var chargeObj = paymentData => ({
   amount: 20, // paymentData.amount
   currency: "gbp",
   source: paymentData.token,
   description: "example charge" //paymentData.example
-}
+});
 
 var server = http.createServer(function(request, response) {
   response.setHeader('Access-Control-Allow-Origin', 'https://ribbonmvp.parseapp.com');
-  response.setHeader('Access-Control-Allow-Origin', 'https://ribbonmvp.parseapp.com/loginPage.html');
+  // response.setHeader('Access-Control-Allow-Origin', 'https://ribbonmvp.parseapp.com/loginPage.html');
   console.log(request.url);
   if (request.url === '/') {
     response.end('hello, world');
