@@ -1,5 +1,7 @@
 var http = require('http');
 
+var port = proccess.env.PORT || 2000
+
 var server = http.createServer(function(request, response) {
   console.log(request.url);
   if (request.url === '/') {
@@ -19,6 +21,6 @@ var getBody = function(request, callback) {
   request.on('end', () => callback(body));
 };
 
-server.listen(2000, function() {
-  console.log("listening on 2000");
+server.listen(port, function() {
+  console.log("listening on", port);
 });
