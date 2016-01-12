@@ -72,8 +72,9 @@
     })
 
     $("#login").submit(function(event) {
-      console.log("login CLICKED");
       event.preventDefault();
+
+      console.log("login CLICKED");
       var name = $("#login-name").val();
       var password = $("#login-password").val();
 
@@ -94,6 +95,10 @@
       var name = $("#signup-name").val();
       var password = $("#signup-password").val();
 
+      Parse.Cloud.run("emailExists", {username: name}).then(function(users) {
+        console.log(users);
+      });
+
       var user = new Parse.User();
       user.set("username", name);
       user.set("password", password);
@@ -107,19 +112,6 @@
         }
       });
     })
-
-
-    // var newBuy = new Buy();
-    // newBuy.set("gift", "No4");
-    // newBuy.set("message", "I want this to arrive at 6th July 2015");
-    // newBuy.save({
-    //   success: function() {
-    //     console.log("success");
-    //   },
-    //   error: function() {
-    //     console.log("error", error.message);
-    //   }
-    // })
   </script>
 </body>
 

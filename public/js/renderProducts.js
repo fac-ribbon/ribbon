@@ -1,5 +1,5 @@
-var renderProducts = (function() {
-  
+var products = (function() {
+
   var Products = Parse.Object.extend("gifts");
   var query = new Parse.Query(Products);
 
@@ -7,13 +7,42 @@ var renderProducts = (function() {
     return products.map(function(product){
       var attr = product.attributes;
       var html = "<div class='product'>";
-      html += "<h2>" + attr.giftName + "</h2>";
+      html += "<h2 class='gift-title'>" + attr.giftName + "</h2>";
       html += "<img src='" + attr.imgurl + "'></img>";
+      html += "</div>"
       return html;
     }).join('');
   };
 
-  return function renderProducts(callback) {
+  var buyItem = function(event) {
+    var Buy = Parse.Object.extend("Buy");
+    var buy = new Buy();
+
+    var target = event.currentTarget;
+
+    var productName = target.getElementsByClassName('gift-title')[0].innerHTML;
+
+    buy.set("gift", productName);
+    // newBuy.set("message", "I want this to arrive at 6th July 2015");
+    buy.save({
+      success: function() {
+        console.log(productName + " successfully ordered");
+      },
+      error: function() {
+        console.log("error buying " + productName, error.message);
+      }
+    })
+  }
+
+  var attachBuyEvents = function() {
+    var productsDiv = document.getElementById('products');
+    var products = productsDiv.getElementsByClassName('product');
+    [].map.call(products, function (product) {
+      product.addEventListener('click', buyItem);
+    })
+  }
+
+  var renderProducts = function renderProducts(callback) {
     query.find({
       success: function(results) {
         callback(createProductHtml(results));
@@ -25,8 +54,15 @@ var renderProducts = (function() {
       }
     });
   };
+
+  return {
+    renderProducts: renderProducts,
+    attachBuyEvents: attachBuyEvents
+  }
 })();
 
-renderProducts(function(html) {
+products.renderProducts(function(html) {
+  console.log(html)
   document.getElementById('products').innerHTML = html;
+  products.attachBuyEvents();
 });
