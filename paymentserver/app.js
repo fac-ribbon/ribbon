@@ -12,7 +12,7 @@ var chargeObj = paymentData => {
 }
 
 var server = http.createServer(function(request, response) {
-  response.setHeader('Access-Control-Allow-Origin', 'https://ribbonmvp.parseapp.com/loginPage.html');
+  response.setHeader('Access-Control-Allow-Origin', 'https://ribbonmvp.parseapp.com');
   console.log(request.url);
   if (request.url === '/') {
     response.end('hello, world');
