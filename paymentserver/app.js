@@ -19,7 +19,7 @@ var server = http.createServer(function(request, response) {
     response.end('hello, world');
   } else if (request.url === "/pay" && request.method === 'POST') {
     getBody(request, function(body) {
-      var paymentData = JSON.parse(body).token
+      var paymentData = JSON.parse(body)
       stripe.charges.create(chargeObj(paymentData), function(err, charge) {
         console.log(err);
         console.log(charge);
