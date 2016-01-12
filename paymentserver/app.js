@@ -1,6 +1,8 @@
 var http = require('http');
 
-var stripe = require('stripe')("sk_test_1vv56eBruuqP9YPX5avh1Ko");
+var stripe = require('stripe')("sk_test_1vv56eBruuqP9YPX5avhlK8o");
+
+
 
 var port = process.env.PORT || 2000;
 
