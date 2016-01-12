@@ -21,10 +21,12 @@ var server = http.createServer(function(request, response) {
     getBody(request, function(body) {
       var paymentData = JSON.parse(body).token
       stripe.charges.create(chargeObj(paymentData), function(err, charge) {
+        console.log(err);
+        console.log(charge);
         if (err && err.type === 'StripeCardError') {
-          response.end('error!, payment not accepted', err);
+          response.end("error");
         } else {
-          response.end('payment success' + err.toString() + charge.toString());
+          response.end("success");
         }
       });
     });
