@@ -12,6 +12,8 @@ var server = http.createServer(function(request, response) {
       console.log(body);
       response.end('have your token back:', body);
     })
+  } else {
+    response.end("404!");
   }
 });
 
