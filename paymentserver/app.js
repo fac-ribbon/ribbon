@@ -8,11 +8,11 @@ var server = http.createServer(function(request, response) {
   if (request.url === '/') {
     response.end('hello, world');
   } else if (request.url === "/pay" && request.method === 'POST') {
-    // getBody(request, function(body) {
-    //   console.log(body);
-    //   response.end('have your token back:', body);
-    // })
-    response.end("welcome to pay endpoint");
+    getBody(request, function(body) {
+      console.log(JSON.parse(body));
+      response.end(JSON.stringify(body));
+    });
+    // response.end("welcome to pay endpoint");
   } else {
     response.end("404!");
   }
