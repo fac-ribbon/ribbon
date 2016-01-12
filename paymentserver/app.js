@@ -6,13 +6,12 @@ var server = http.createServer(function(request, response) {
   console.log(request.url);
   if (request.url === '/') {
     response.end('hello, world');
-  }
-  if (request.url === "/pay" && request.method === 'POST') {
+  } else if (request.url === "/pay" && request.method === 'POST') {
     getBody(request, function(body) {
       console.log(body);
+      response.end('have your token back:', body);
     })
   }
-  response.end('hello, payment');
 });
 
 var getBody = function(request, callback) {
