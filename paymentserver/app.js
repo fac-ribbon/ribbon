@@ -45,7 +45,7 @@ var makePayment = function(paymentData, callbackError, callbackSuccess) {
       if (err) {
         callbackError();
         } else {
-          buyItem(productData, function(success) {
+          buyItem(paymentData, function(success) {
             if (!success) {
                 throw new Error('This should not happen, payment with token '+ chargeData.source +'failed');
             } else {
@@ -58,7 +58,7 @@ var makePayment = function(paymentData, callbackError, callbackSuccess) {
   });
 }
 
-var testUrl = "https://www.paymentserver.herokuapp.com/pay?data1=3&data2=5";
+// var testUrl = "https://www.paymentserver.herokuapp.com/pay?data1=3&data2=5";
 var getQueryData = function(requestUrl) {
     return querystring.parse(url.parse(requestUrl, true).search.slice(1));
 };
@@ -83,7 +83,7 @@ var server = http.createServer(function(request, response) {
   } else if (urlData.pathname === "/pay" && request.method === 'POST') {
     var urlData = url.parse(request.url, true);
     getBody(request, function(body) {
-      queryData = getQueryData(request.url);
+      var queryData = getQueryData(request.url);
       var paymentData = querystring.parse(body);
       paymentData.productId = queryData.productId;
       paymentData.saleInfo = formatQueryData(queryData);
