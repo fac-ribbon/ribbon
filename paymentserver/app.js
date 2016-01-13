@@ -25,26 +25,18 @@ var server = http.createServer(function(request, response) {
     var urlData = url.parse(request.url, true);
     getBody(request, function(body) {
       var paymentData = querystring.parse(body);
-      // var paymentData = JSON.parse(body);
-      // console.log("In pay endpoint");
-      // console.log('raw request', body);
-      // console.log('raw request parsed', paymentData);
-      // console.log('url attribs', urlData.search);
       paymentData.amount = urlData.search.split('=')[1];
       var charge = chargeObj(paymentData);
-      console.log(charge);
       stripe.charges.create(charge, function(err, charge) {
-        console.log(err);
-        console.log(charge);
-        response.writeHead(302, {'Location': 'https://ribbonmvp.parseapp.com'})
         if (err && err.type === 'StripeCardError') {
-          response.end("error");
+          response.writeHead(302, {'Location': 'https://ribbonmvp.parseapp.com/html/payment-error.html'})
+          response.end();
         } else {
-          response.end("success");
+          response.writeHead(302, {'Location': 'https://ribbonmvp.parseapp.com/html/payment-success.html'})
+          response.end();
         }
       });
     });
-    // response.end("welcome to pay endpoint");
   } else {
     response.end("404!");
   }
