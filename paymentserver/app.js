@@ -16,8 +16,8 @@ var getPrice = function(productId, callback) {
 var buyItem = function(productData, callback) {
   var Buy = Parse.Object.extend('Buy');
   var buy = new Buy();
-  buy.set("giftName", productData.gift);
-  buy.set("saleInfo", productData.saleInfo);
+  buy.set("gift", productData.gift);
+  buy.set("saleInfo", productData.saleInfo + "giftName: " + p);
   // console.log("we need to save: ", productData.saleInfo);
   // newBuy.set("message", "I want this to arrive at 6th July 2015");
   buy.save({
