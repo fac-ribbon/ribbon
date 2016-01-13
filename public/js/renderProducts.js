@@ -73,12 +73,13 @@ function checkLogin(){
     //console.log("Logged in! "+Parse.User.current().get("username"));
     $("#current-user").html("User: " + Parse.User.current().get("username"));
   } else{
-    $("#current-user").html("Not logged in");
+    // window.location.assign("../index.html");
+    $("#current-user").html("Not logged in you fool");
   }
 }
 
 $("#logout").click(function(event){
   Parse.User.logOut();
-  checkLogin();
+  // checkLogin();
   window.location.assign("../index.html");
 });
