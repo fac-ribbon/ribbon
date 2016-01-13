@@ -110,7 +110,7 @@
             console.log(request.responseText);
           }
         }
-        request.send(token);
+        request.send(JSON.stringify({token:token}));
       }
     }
 
@@ -125,11 +125,11 @@
       }
       console.log(stripeOptions);
       $('.submit-button').attr("disabled", "disabled");
-      Stripe.createToken(stripeOptions, 20, stripeResponseHandler);
+      Stripe.createToken(stripeOptions, 40, stripeResponseHandler);
       console.log(event);
       console.log(document.getElementById('payment-form'));
     });
-
+\
         function checkLogin() {
           if (Parse.User.current()) {
             //console.log("Logged in! "+Parse.User.current().get("username"));
