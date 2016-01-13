@@ -1,4 +1,2 @@
-$('#products-carousel').carousel({
-  interval: 2000
-});
+$('#products-carousel').carousel({});
 // $(".item").addClass('active');
