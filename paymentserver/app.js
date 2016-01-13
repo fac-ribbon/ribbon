@@ -15,12 +15,13 @@ var chargeObj = paymentData => ({
 });
 
 var server = http.createServer(function(request, response) {
+  var urlData = url.parse(request.url, true);
   response.setHeader('Access-Control-Allow-Origin', 'https://ribbonmvp.parseapp.com');
   // response.setHeader('Access-Control-Allow-Origin', 'https://ribbonmvp.parseapp.com/loginPage.html');
   console.log(request.url);
   if (request.url === '/') {
     response.end('hello, world');
-  } else if (request.url === "/pay" && request.method === 'POST') {
+  } else if (urlData.pathname === "/pay" && request.method === 'POST') {
     var urlData = url.parse(request.url, true);
     getBody(request, function(body) {
       var paymentData = querystring.parse(body);
