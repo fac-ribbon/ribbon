@@ -9,6 +9,8 @@ $("#signup").submit(function(event) {
   event.preventDefault();
   var name = $("#signup-name").val();
   var password = $("#signup-password").val();
+  var refCode = $('#signup-refCode').val();
+
 
   Parse.Cloud.run("emailExists", {username: name}).then(function(users) {
     console.log(users);
@@ -17,7 +19,7 @@ $("#signup").submit(function(event) {
   var user = new Parse.User();
   user.set("username", name);
   user.set("password", password);
-  user.signUp(null, {
+  user.signUp({refCode: refCode}, {
     success: function(user) {
       console.log("Login success", user);
       window.location.assign("../html/products.html");
