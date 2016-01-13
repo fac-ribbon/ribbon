@@ -2,6 +2,9 @@ var http = require('http');
 
 var stripe = require('stripe')("sk_test_1vv56eBruuqP9YPX5avhlK8o");
 
+var querystring = require('querystring');
+var url = require('url');
+
 var port = process.env.PORT || 2000;
 
 var chargeObj = paymentData => ({
@@ -18,10 +21,14 @@ var server = http.createServer(function(request, response) {
   if (request.url === '/') {
     response.end('hello, world');
   } else if (request.url === "/pay" && request.method === 'POST') {
+    var urlData = url.parse(request.url, true);
     getBody(request, function(body) {
+      var paymentData = querystring.parse(body);
       // var paymentData = JSON.parse(body);
       console.log("In pay endpoint");
       console.log('raw request', body);
+      console.log('raw request parsed', paymentData);
+      console.log('url attribs', urlData.search);
       stripe.charges.create(chargeObj(paymentData), function(err, charge) {
         console.log(err);
         console.log(charge);
