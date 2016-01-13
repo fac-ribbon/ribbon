@@ -19,12 +19,13 @@ var server = http.createServer(function(request, response) {
     response.end('hello, world');
   } else if (request.url === "/pay" && request.method === 'POST') {
     getBody(request, function(body) {
-      var paymentData = JSON.parse(body);
+      // var paymentData = JSON.parse(body);
       console.log("In pay endpoint");
-      console.log('raw request')
+      console.log('raw request', body);
       stripe.charges.create(chargeObj(paymentData), function(err, charge) {
         console.log(err);
         console.log(charge);
+        response.writeHead(302, {'Location': 'https://ribbonmvp.parseapp.com'})
         if (err && err.type === 'StripeCardError') {
           response.end("error");
         } else {
