@@ -8,14 +8,21 @@
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/styles.css">
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 
 <body>
   <div id="main">
-    <div id="current-user">user;</div>
-    <div id="products"></div>
+    <div id="current-user">user</div>
+    <div id="products-carousel" class="carousel slide">
+      <div id="products" class="carousel-inner" data-ride="carousel" role="listbox">
+        <div class='item active'><img src='http://3.bp.blogspot.com/-8F28qIv-1pE/VBuLPdur9JI/AAAAAAAAAPc/F6ikaZDWHzo/s1600/kata%2Bkata%2Bcemburu.jpg'><div class="carousel-caption"><h3>Present</h3></div></div>
+        <div class='item'><img src='https://tersurat.files.wordpress.com/2015/04/kata-kata-kecewa.jpg'><div class="carousel-caption"><h3>Test</h3></div></div>
+
+    </div>
   </div>
 
   <div>
@@ -24,6 +31,7 @@
 
   <script src="../js/initialiseParse.js"></script>
   <script src="../js/renderProducts.js"></script>
+  <script src="../js/buildCarousel.js"></script>
 </body>
 
 </html>

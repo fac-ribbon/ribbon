@@ -6,10 +6,10 @@ var products = (function() {
   var createProductHtml = function(products) {
     return products.map(function(product){
       var attr = product.attributes;
-      var html = "<div class='product'>";
-      html += "<h2 class='gift-title'>" + attr.giftName + "</h2>";
-      html += "<img src='" + attr.imgurl + "'></img>";
-      html += "</div>";
+      var html = "<div class='item'>";
+      html += "<img src=" + attr.imgurl + " alt=" + attr.giftName + "></img>";
+      html += "<div class='banner'><div class='carousel-caption'> <h2 class='gift-title'>" + attr.giftName + "</h2>";
+      html += "</div></div></div>";
       return html;
     }).join('');
   };
@@ -63,7 +63,7 @@ var products = (function() {
 
 products.renderProducts(function(html) {
   console.log(html);
-  document.getElementById('products').innerHTML = html;
+  // document.getElementById('products').innerHTML =  "<div class='item active'><img src='http://3.bp.blogspot.com/-8F28qIv-1pE/VBuLPdur9JI/AAAAAAAAAPc/F6ikaZDWHzo/s1600/kata%2Bkata%2Bcemburu.jpg'></div>" + html;
   products.attachBuyEvents();
 });
 
