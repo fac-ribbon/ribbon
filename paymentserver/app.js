@@ -40,6 +40,7 @@ var chargeObj = paymentData => ({
 var makePayment = function(paymentData, callbackError, callbackSuccess) {
   getPrice(paymentData.productId, function(productData) {
     paymentData.amount = productData.PricePence;
+    paymentData.gift = productData.giftName;
     var chargeData = chargeObj(paymentData);
     stripe.charges.create(chargeData, function(err, charge) {
       // if (err) console.log(err);
