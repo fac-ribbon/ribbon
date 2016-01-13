@@ -7,6 +7,7 @@
     $("#current-user").html("User: " + Parse.User.current().get("username"))
   } else{
     $("#current-user").html("Not logged in");
+    window.location.assign("../index.html");
   }
 })();
 
