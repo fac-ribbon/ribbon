@@ -79,15 +79,7 @@ var server = http.createServer(function(request, response) {
         response.writeHead(302, {'Location': 'https://ribbonmvp.parseapp.com/html/payment-success.html'})
         response.end();
       });
-    )};
-    //   var charge = chargeObj(paymentData);
-    //   stripe.charges.create(charge, function(err, charge) {
-    //     if (err) console.log(err);
-    //     if (err && err.type === 'StripeCardError') {
-    //     } else {
-    //     }
-    //   });
-    // });
+    });
   } else {
     response.end("404!");
   }
