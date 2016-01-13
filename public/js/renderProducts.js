@@ -9,7 +9,7 @@ var products = (function() {
       var html = "<div class='product'>";
       html += "<h2 class='gift-title'>" + attr.giftName + "</h2>";
       html += "<img src='" + attr.imgurl + "'></img>";
-      html += "</div>"
+      html += "</div>";
       return html;
     }).join('');
   };
@@ -31,16 +31,16 @@ var products = (function() {
       error: function() {
         console.log("error buying " + productName, error.message);
       }
-    })
-  }
+    });
+  };
 
   var attachBuyEvents = function() {
     var productsDiv = document.getElementById('products');
     var products = productsDiv.getElementsByClassName('product');
     [].map.call(products, function (product) {
       product.addEventListener('click', buyItem);
-    })
-  }
+    });
+  };
 
   var renderProducts = function renderProducts(callback) {
     query.find({
@@ -58,11 +58,27 @@ var products = (function() {
   return {
     renderProducts: renderProducts,
     attachBuyEvents: attachBuyEvents
-  }
+  };
 })();
 
 products.renderProducts(function(html) {
-  console.log(html)
+  console.log(html);
   document.getElementById('products').innerHTML = html;
   products.attachBuyEvents();
+});
+
+//logout
+function checkLogin(){
+  if(Parse.User.current()){
+    //console.log("Logged in! "+Parse.User.current().get("username"));
+    $("#current-user").html("User: " + Parse.User.current().get("username"));
+  } else{
+    $("#current-user").html("Not logged in");
+  }
+}
+
+$("#logout").click(function(event){
+  Parse.User.logOut();
+  checkLogin();
+  window.location.assign("../index.html");
 });

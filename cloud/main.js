@@ -2,6 +2,7 @@
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // For example:
 Parse.Cloud.define("emailExists", function(request, response) {
+  console.log("cloud code emailExists is running");
   // var acl = // create with master key
   var User = Parse.Object.extend("User");
   // var user = new User()
@@ -13,9 +14,14 @@ Parse.Cloud.define("emailExists", function(request, response) {
       var usernames = userData.map(function(user) {
         return user.attributes.username;
       });
+
+      console.log("usernames");
+      console.log(usernames);
+
       response.success(usernames.indexOf(request.params.username) !== -1);
     },
     error: function(error) {
+      response.error(error);
       console.log("emailExists:", error);
     }
   });
