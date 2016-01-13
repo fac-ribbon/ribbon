@@ -26,12 +26,14 @@ var server = http.createServer(function(request, response) {
     getBody(request, function(body) {
       var paymentData = querystring.parse(body);
       // var paymentData = JSON.parse(body);
-      console.log("In pay endpoint");
-      console.log('raw request', body);
-      console.log('raw request parsed', paymentData);
-      console.log('url attribs', urlData.search);
+      // console.log("In pay endpoint");
+      // console.log('raw request', body);
+      // console.log('raw request parsed', paymentData);
+      // console.log('url attribs', urlData.search);
       paymentData.amount = urlData.search.split('=')[1];
-      stripe.charges.create(chargeObj(paymentData), function(err, charge) {
+      var charge = chargeObj(paymentData);
+      console.log(charge);
+      stripe.charges.create(charge, function(err, charge) {
         console.log(err);
         console.log(charge);
         response.writeHead(302, {'Location': 'https://ribbonmvp.parseapp.com'})
