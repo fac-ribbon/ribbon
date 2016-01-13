@@ -16,7 +16,11 @@
 
 <body>
   <div id="main">
-    <div id="current-user">user</div>
+    <div id="current-user">user:</div>
+
+    <div id="atagInsert">
+
+    </div>
     <div id="products-carousel" class="carousel slide">
       <ol class="carousel-indicators">
         <li data-target="#products-carousel" data-slide-to="0" class="active"></li>
@@ -39,7 +43,19 @@
   <div>
     <button id="logout">Log Out</button>
   </div>
+  <script>
 
+
+    var giftId = "4tcI7tbxrV";//this should change depending on the product
+    var atagPrefix = "<a href='payment.html?product-id=";
+    var atagSuffix = "'>Buy</a>"
+    var atag = atagPrefix + giftId + atagSuffix;
+
+    console.log(atag);
+
+    var div = document.getElementById('atagInsert');
+    div.innerHTML = atag;
+  </script>
   <script src="../js/initialiseParse.js"></script>
   <script src="../js/renderProducts.js"></script>
   <script src="../js/buildCarousel.js"></script>

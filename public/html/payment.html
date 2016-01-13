@@ -1,0 +1,68 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://www.parsecdn.com/js/parse-latest.js"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script>
+    Stripe.setPublishableKey('pk_test_75mYWHJNKMpDkEXD2KacBukY');
+  </script>
+</head>
+
+<body>
+  <div id="main">
+    <h1>Payment Page</h1>
+    <form id="details" onsubmit="saveDeliveryDetails(event)">
+      <p>Delivery Details</p>
+      <input name="name" placeholder="RECIPIENT NAME"></input>
+      <br>
+      <input name="addressl1" placeholder="ADDRESS LINE ONE"></input>
+      <br>
+      <input name="addressl2" placeholder="ADDRESS LINE TWO"></input>
+      <br>
+      <input name="city" placeholder="CITY"></input>
+      <br>
+      <input name="postCode" placeholder="POST CODE"></input>
+      <br>
+      <input name="giftMessage" placeholder="GIFT MESSAGE (optional)"></input>
+      <br>
+      <input name="staffMessage" placeholder="MESSAGE FOR SALES DEPT AT RIBBON"></input>
+      <br>
+      <input type="submit"></input>
+    </form>
+    <form id="stripeform" method="POST">
+      <script id="stripescript" src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_75mYWHJNKMpDkEXD2KacBukY" data-amount="" data-name="Ribbon" data-description="" data-image="/128x128.png" data-locale="auto" data-currency="gbp">
+      </script>
+    </form>
+  </div>
+  <script>
+  Parse.initialize("nhFykJoUL5INlggaBWAYf99p7xeu06bOuyhc4iSx", "8xjV4an8FK3OngCErKac7l3OlZntb4w1NtDfNtVZ");
+
+    var saveDeliveryDetails = function(event) {
+      event.preventDefault();
+      console.log("----->>>>>SUBMIT");
+      var productId = "4tcI7tbxrV";
+      var action = "https://ribbonpaymentserver.herokuapp.com/pay";
+
+      action += "?" + [].map.call(document.getElementById("details").getElementsByTagName('input'), function(elem) {
+        return elem.name + "=" + elem.value + "&"
+      }).join('') + "productId=" + productId+"&email="+Parse.User.current().get("username");
+
+      console.log("action", action);
+
+      //  $("#stripeform").action($("#stripeform").action + price)
+      $("#stripeform").attr("action", action);
+      // $("#stripescript").attr("data-amount", cost);
+      return true;
+    };
+  </script>
+  <script src="loginPage.js"></script>
+</body>
+
+</html>
