@@ -61,3 +61,17 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
     // }
 
 });
+
+Parse.Cloud.define("getItemCost", function(request, response) {
+  var Gifts = Parse.Object.extend("gifts");
+  var query = new Parse.Query(Gifts);
+  query.equalTo("objectId", request.params.productId);
+  query.find({
+    success: function(result) {
+      response.success(JSON.stringify(result));
+    },
+    error: function(err) {
+      response.error(JSON.stringify(err));
+    }
+  });
+});
