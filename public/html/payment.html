@@ -1,0 +1,101 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://www.parsecdn.com/js/parse-latest.js"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script>
+    Stripe.setPublishableKey('pk_test_75mYWHJNKMpDkEXD2KacBukY');
+  </script>
+
+</head>
+
+<body>
+  <div id="main">
+
+    <h1>Payment Page</h1>
+
+    <form id="stripeform"  method="POST">
+    <script
+      id="stripescript"
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_75mYWHJNKMpDkEXD2KacBukY"
+      data-amount=""
+      data-name="Ribbon"
+      data-description=""
+      data-image="/128x128.png"
+      data-locale="auto"
+      data-currency="gbp">
+    </script>
+  </form>
+
+</div>
+  <script>
+  // $("#stripeform").action($("#stripeform").action + price)
+    var productId = "4tcI7tbxrV";
+    var action="https://ribbonpaymentserver.herokuapp.com/pay?productId="+productId;
+    $("#stripeform").attr("action", action);
+    $("#stripescript").attr("data-amount", cost);
+
+    function stripeResponseHandler(status, response) {
+      console.log("IM IN STRIPE RESPONSE HANDLER");
+      if (response.error) {
+        // re-enable the submit button
+        $('.submit-button').removeAttr("disabled");
+        // show the errors on the form
+        $(".payment-errors").html(response.error.message);
+      } else {
+        var form$ = $("#payment-form");
+        // token contains id, last4, and card type
+        var token = response['id'];
+        console.log(token);
+
+        var request = new XMLHttpRequest()
+        request.onreadystatechange = function() {
+          if (request.readyState === 4) {
+            console.log(request.status);
+            console.log(request.responseText);
+          }
+        }
+        request.open("POST", "https://ribbonpaymentserver.herokuapp.com/pay")
+        request.onreadystatechange = function() {
+          if (request.readyState === 4) {
+            console.log(request.status);
+            console.log(request.responseText);
+          }
+        }
+        request.send(JSON.stringify({
+          token: token
+        }));
+      }
+    }
+
+    document.getElementById("payment-form").addEventListener('submit', function(event) {
+      console.log("submiting!");
+      event.preventDefault()
+      var stripeOptions = {
+        number: $('.card-number').val(),
+        cvc: $('.card-cvc').val(),
+        exp_month: $('.card-expiry-month').val(),
+        exp_year: $('.card-expiry-year').val()
+      }
+      console.log(stripeOptions);
+      $('.submit-button').attr("disabled", "disabled");
+      Stripe.createToken(stripeOptions, cost, stripeResponseHandler);
+      console.log(event);
+      console.log(document.getElementById('payment-form'));
+    });
+  </script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script src="loginPage.js"></script>
+
+</body>
+
+</html>
