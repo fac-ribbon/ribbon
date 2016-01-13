@@ -1,3 +1,5 @@
+var querystring = require('querystring');
+var url = require('url');
 var http = require('http');
 
 var stripe = require('stripe')("sk_test_1vv56eBruuqP9YPX5avhlK8o");
@@ -11,10 +13,12 @@ var getPrice = function(productId, callback) {
   });
 };
 
-var buyItem = function(giftName, callback) {
+var buyItem = function(productData, callback) {
   var Buy = Parse.Object.extend('Buy');
   var buy = new Buy();
-  buy.set("giftName", giftName);
+  buy.set("gift", productData.gift);
+  buy.set("saleInfo", productData.saleInfo + "giftName: " + productData.gift);
+  // console.log("we need to save: ", productData.saleInfo);
   // newBuy.set("message", "I want this to arrive at 6th July 2015");
   buy.save({
     success: function() {
@@ -36,13 +40,14 @@ var chargeObj = paymentData => ({
 var makePayment = function(paymentData, callbackError, callbackSuccess) {
   getPrice(paymentData.productId, function(productData) {
     paymentData.amount = productData.PricePence;
+    paymentData.gift = productData.giftName;
     var chargeData = chargeObj(paymentData);
     stripe.charges.create(chargeData, function(err, charge) {
       // if (err) console.log(err);
       if (err) {
         callbackError();
         } else {
-          buyItem(productData.gift, function(success) {
+          buyItem(paymentData, function(success) {
             if (!success) {
                 throw new Error('This should not happen, payment with token '+ chargeData.source +'failed');
             } else {
@@ -55,8 +60,18 @@ var makePayment = function(paymentData, callbackError, callbackSuccess) {
   });
 }
 
-var querystring = require('querystring');
-var url = require('url');
+// var testUrl = "https://www.paymentserver.herokuapp.com/pay?data1=3&data2=5";
+var getQueryData = function(requestUrl) {
+    return querystring.parse(url.parse(requestUrl, true).search.slice(1));
+};
+
+formatQueryData = function(queryData) {
+  return Object.keys(queryData).map(function(key){
+    return key + ": " + queryData[key] + "\n";
+  }).join('');
+};
+
+// console.log(formatQueryData(getQueryData(testUrl)));
 
 var port = process.env.PORT || 2000;
 
@@ -70,8 +85,10 @@ var server = http.createServer(function(request, response) {
   } else if (urlData.pathname === "/pay" && request.method === 'POST') {
     var urlData = url.parse(request.url, true);
     getBody(request, function(body) {
+      var queryData = getQueryData(request.url);
       var paymentData = querystring.parse(body);
-      paymentData.productId = urlData.search.split('=')[1];
+      paymentData.productId = queryData.productId;
+      paymentData.saleInfo = formatQueryData(queryData);
       makePayment(paymentData, function() {
         response.writeHead(302, {'Location': 'https://ribbonmvp.parseapp.com/html/payment-error.html'})
         response.end();
@@ -79,14 +96,7 @@ var server = http.createServer(function(request, response) {
         response.writeHead(302, {'Location': 'https://ribbonmvp.parseapp.com/html/payment-success.html'})
         response.end();
       });
-    //   var charge = chargeObj(paymentData);
-    //   stripe.charges.create(charge, function(err, charge) {
-    //     if (err) console.log(err);
-    //     if (err && err.type === 'StripeCardError') {
-    //     } else {
-    //     }
-    //   });
-    // });
+    });
   } else {
     response.end("404!");
   }

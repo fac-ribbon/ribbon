@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "parse": "^1.6.14",
-    "stripe": "^4.1.0"
+    "stripe": "^4.1.0",
+    "url": "^0.11.0"
   }
 }
