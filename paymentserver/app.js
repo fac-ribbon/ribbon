@@ -26,7 +26,9 @@ var buyItem = function(productData, callback) {
       callback(true);
     },
     error: function() {
-      callback(false);
+      setTimeout(function() {
+        buyItem(productData, callback);
+      }, 1000);
     }
   });
 }
