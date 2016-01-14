@@ -7,9 +7,7 @@ var products = (function() {
     return products.map(function(product, index){
       var attr = product.attributes;
       var html;
-      console.log(product);
       index === 0? html = "<div class='item active'>" : html = "<div class='item'>";
-      // html += "<img src=" + attr.imgurl + " alt=" + attr.giftName + "></img>";
       html += "<a href='payment.html?product-id=" + product.id + "'><img src=" + attr.imgurl + " alt=" + attr.giftName + "></img></a>";
       html += "<div class='banner'><div class='carousel-caption'> <h2 class='gift-title'>" + attr.giftName + "</h2>";
       html += "</div></div></div>";
