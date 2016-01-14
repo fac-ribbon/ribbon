@@ -1,8 +1,9 @@
 var querystring = require('querystring');
 var url = require('url');
 var http = require('http');
+require('env2')('../config.env');
 
-var stripe = require('stripe')("sk_test_1vv56eBruuqP9YPX5avhlK8o");
+var stripe = require('stripe')(process.env.STRIPE_KEY);
 var Parse = require('parse/node').Parse;
 Parse.initialize("nhFykJoUL5INlggaBWAYf99p7xeu06bOuyhc4iSx", "8xjV4an8FK3OngCErKac7l3OlZntb4w1NtDfNtVZ");
 
