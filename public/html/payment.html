@@ -10,9 +10,6 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="https://www.parsecdn.com/js/parse-latest.js"></script>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  <script>
-    Stripe.setPublishableKey('pk_test_75mYWHJNKMpDkEXD2KacBukY');
-  </script>
 </head>
 
 <body>
@@ -42,17 +39,26 @@
     </form>
   </div>
   <script>
-  Parse.initialize("nhFykJoUL5INlggaBWAYf99p7xeu06bOuyhc4iSx", "8xjV4an8FK3OngCErKac7l3OlZntb4w1NtDfNtVZ");
+    Parse.initialize("nhFykJoUL5INlggaBWAYf99p7xeu06bOuyhc4iSx", "8xjV4an8FK3OngCErKac7l3OlZntb4w1NtDfNtVZ");
 
+    var getProductId = function() {
+      var query = window.location.search.substring(1);
+      var vars = query.split("&");
+      return vars.filter(function(elem){
+        return elem.split("=")[0] === "productId";
+      })[0].split("=")[1];
+    }
     var saveDeliveryDetails = function(event) {
       event.preventDefault();
       console.log("----->>>>>SUBMIT");
-      var productId = "4tcI7tbxrV";
+
+      var productId = getProductId();
+      console.log(productId);
       var action = "https://ribbonpaymentserver.herokuapp.com/pay";
 
       action += "?" + [].map.call(document.getElementById("details").getElementsByTagName('input'), function(elem) {
         return elem.name + "=" + elem.value + "&"
-      }).join('') + "productId=" + productId+"&email="+Parse.User.current().get("username");
+      }).join('') + "productId=" + productId + "&email=" + Parse.User.current().get("username");
 
       console.log("action", action);
 
