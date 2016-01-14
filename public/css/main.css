@@ -89,7 +89,12 @@ body {
 .hidden {
   display: none;
 }
-.imgDefault {
-  height: 20em;
-  width: 100%;
+
+.input-disabled {
+  background-color: grey;
+}
+
+.imgDefault{
+    height: 20em;
+    width: 100%;
 }
