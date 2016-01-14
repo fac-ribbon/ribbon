@@ -6,7 +6,6 @@
   <meta name="description" content="My Parse App">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/styles.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
   <script type="text/javascript" src="https://www.parsecdn.com/js/parse-latest.js"></script>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
@@ -15,6 +14,7 @@
 <body>
   <div id="main">
     <h1>Payment Page</h1>
+    <a href="products.html">Back</a>
     <form id="details" onsubmit="saveDeliveryDetails(event)">
       <p>Delivery Details</p>
       <input name="name" placeholder="RECIPIENT NAME"></input>
@@ -68,7 +68,7 @@
       return true;
     };
   </script>
-  <script src="loginPage.js"></script>
+  <!-- <script src="loginPage.js"></script> -->
 </body>
 
 </html>

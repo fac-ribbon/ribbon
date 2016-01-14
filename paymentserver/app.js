@@ -38,6 +38,7 @@ var chargeObj = paymentData => ({
   currency: "gbp",
   source: paymentData.stripeToken,
   description: "example charge" //paymentData.example
+  receipt_email: paymentData.email ;
 });
 
 var makePayment = function(paymentData, callbackError, callbackSuccess) {
@@ -91,6 +92,7 @@ var server = http.createServer(function(request, response) {
       var queryData = getQueryData(request.url);
       var paymentData = querystring.parse(body);
       paymentData.productId = queryData.productId;
+      paymentData.email = queryData.email;
       paymentData.saleInfo = formatQueryData(queryData);
       makePayment(paymentData, function() {
         response.writeHead(302, {'Location': 'https://ribbonmvp.parseapp.com/html/payment-error.html'})
