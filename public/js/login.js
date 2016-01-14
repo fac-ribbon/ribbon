@@ -18,7 +18,9 @@ $("#email").submit(function(event) {
     if (exists === true) {
       $("form").toggleClass("hidden");
     }
-    else {$('#login-email-fail')[0].innerHTML = "Incorrect email address! Please try again or <a href='../index.html'>Sign Up!</a>";}
+    else {
+      $("#login-email-p")[0].innerHTML = "Incorrect. Try again or <a href='../index.html'>Sign Up!</a>";
+    }
   });
 
 
@@ -35,7 +37,7 @@ $("#pin").submit(function(event) {
     },
     error: function(user, error) {
       console.log("Login error", error.message);
-      $('#login-password-fail')[0].innerHTML = "Incorrect password! Please try again!";
+      $("#login-password-p")[0].innerHTML = "Incorrect";
     }
   });
 });
