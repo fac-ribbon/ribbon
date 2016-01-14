@@ -1,6 +1,5 @@
 (function() {
   $(document).ready(function() {
-    Parse.initialize("nhFykJoUL5INlggaBWAYf99p7xeu06bOuyhc4iSx", "8xjV4an8FK3OngCErKac7l3OlZntb4w1NtDfNtVZ");
     var productId = getProductId();
 
     buildProductDescription(productId, function(html) {
