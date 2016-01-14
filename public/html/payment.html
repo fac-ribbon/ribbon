@@ -42,8 +42,18 @@
       <button id="pay-button">confirm details</button>
       <button id="details-button" class="hidden">change details</button>
     </div>
-    <form id="stripeform" method="POST">
-      <script id="stripescript" src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_75mYWHJNKMpDkEXD2KacBukY" data-amount="" data-name="Ribbon" data-description="" data-image="/128x128.png" data-locale="auto" data-currency="gbp">
+    <form id="stripeform" method="POST" class="hidden">
+      <script
+        id="stripescript"
+        src="https://checkout.stripe.com/checkout.js"
+        class="stripe-button" data-key="pk_test_75mYWHJNKMpDkEXD2KacBukY"
+        data-amount=""
+        data-name="Ribbon"
+        data-description=""
+        data-image="https://cloud.githubusercontent.com/assets/12845233/12332997/8491b742-bae9-11e5-91c0-7f5d05379360.png"
+        data-locale="auto"
+        data-currency="gbp"
+      >
       </script>
     </form>
   </div>
