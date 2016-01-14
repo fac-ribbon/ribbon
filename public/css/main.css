@@ -11,3 +11,7 @@ body {
 .hidden {
   display: none;
 }
+
+.input-disabled {
+  background-color: grey;
+}
