@@ -4,22 +4,30 @@ var products = (function() {
   var query = new Parse.Query(Products);
 
   var createProductHtml = function(products) {
-    return products.map(function(product){
+    return products.map(function(product, index){
       var attr = product.attributes;
-      var html = "<div class='item'>";
-      html += "<img src=" + attr.imgurl + " alt=" + attr.giftName + "></img>";
+      var html;
+      index === 0? html = "<div class='item active'>" : html = "<div class='item'>";
+      html += "<a href='payment.html?product-id=" + product.id + "'><img src=" + attr.imgurl + " alt=" + attr.giftName + "></img></a>";
       html += "<div class='banner'><div class='carousel-caption'> <h2 class='gift-title'>" + attr.giftName + "</h2>";
       html += "</div></div></div>";
       return html;
     }).join('');
   };
 
+
+  // var createCarouselIndicatorHtml = function (products){
+  //   return products.map(function(product, index){
+  //     var indicatorsHtml = "<li data-target='#products-carousel' data-slide-to=" + index;
+  //     index === 0? indicatorsHtml += "class='active'></li>" : indicatorsHtml += "</li>";
+  //     return indicatorsHtml;
+  //   }).join('');
+  // };
+
   var buyItem = function(event) {
     var Buy = Parse.Object.extend("Buy");
     var buy = new Buy();
-
     var target = event.currentTarget;
-
     var productName = target.getElementsByClassName('gift-title')[0].innerHTML;
 
     buy.set("gift", productName);
@@ -63,7 +71,7 @@ var products = (function() {
 
 products.renderProducts(function(html) {
   console.log(html);
-  // document.getElementById('products').innerHTML =  "<div class='item active'><img src='http://3.bp.blogspot.com/-8F28qIv-1pE/VBuLPdur9JI/AAAAAAAAAPc/F6ikaZDWHzo/s1600/kata%2Bkata%2Bcemburu.jpg'></div>" + html;
+  document.getElementById('products').innerHTML = html;
   products.attachBuyEvents();
 });
 
