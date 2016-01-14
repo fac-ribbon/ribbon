@@ -2,10 +2,18 @@
   font-family: Palatino Linotype;
 }*/
 
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
 #index {
   background-color: #030800;
   margin: 0;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   padding-top: 4em;
 }
 .index-a {
@@ -21,23 +29,27 @@
   background-color: #0F5935;
 }*/
 
+.ribbon-form {
+  text-align: center;
+}
+
 .index-outer {
   text-align: center;
   width: 100%;
   height: 50vh;
 }
 .ribbon {
-  height: 1em;
-  font-size: 60px !important;
+  /*height: 1em;*/
+  font-size: 2em !important;
   /* This ribbon is based on a 16px font side and a 24px vertical rhythm. I've used em's to position each element for scalability. If you want to use a different font size you may have to play with the position of the ribbon elements */
-  width: 30%;
+  width: 30vw;
   position: relative;
   background: #ba89b6;
   color: #fff;
   text-align: center;
-  padding: 1em 2em;
+  padding: 3vh 15vw;
   /* Adjust to suit */
-  margin: 2em auto 3em;
+  margin: 2vw auto 3vw;
   /* Based on 24px vertical rhythm. 48px bottom margin - normally 24 but the ribbon 'graphics' take up 24px themselves so we double it. */
 }
 .ribbon:before, .ribbon:after {
