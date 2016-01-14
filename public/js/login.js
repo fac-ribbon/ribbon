@@ -15,8 +15,15 @@ $("#email").submit(function(event) {
   // Parse.cloud
   Parse.Cloud.run("emailExists", {username: name}).then(function(exists) {
     console.log("user exists:", exists);
+    if (exists === true) {
+      $("form").toggleClass("hidden");
+    }
+    else {
+      $("#login-email-p")[0].innerHTML = "Incorrect. Try again or <a href='../index.html'>Sign Up!</a>";
+    }
   });
-  $("form").toggleClass("hidden");
+
+
 });
 
 $("#pin").submit(function(event) {
@@ -30,6 +37,7 @@ $("#pin").submit(function(event) {
     },
     error: function(user, error) {
       console.log("Login error", error.message);
+      $("#login-password-p")[0].innerHTML = "Incorrect";
     }
   });
 });

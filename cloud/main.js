@@ -44,7 +44,7 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
 
   get_ref_code(function(secret_refcode){
     if (request.object.get('refCode') !== secret_refcode) {
-        response.error(error);
+        response.error("badref");
     } else {
       console.log(request);
         var acl = new Parse.ACL();

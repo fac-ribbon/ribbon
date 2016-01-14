@@ -12,8 +12,14 @@ $("#signup").submit(function(event) {
   var refCode = $('#signup-refCode').val();
 
 
-  Parse.Cloud.run("emailExists", {username: name}).then(function(users) {
-    console.log(users);
+  Parse.Cloud.run("emailExists", {username: name}).then(function(exists) {
+    console.log("user exists:", exists);
+    if (exists === true) {
+      $("#signup-email-p")[0].innerHTML = "Already taken";
+    }
+    else {
+        $("#signup-email-p")[0].innerHTML = "";
+    }
   });
 
   var user = new Parse.User();
@@ -21,11 +27,18 @@ $("#signup").submit(function(event) {
   user.set("password", password);
   user.signUp({refCode: refCode}, {
     success: function(user) {
-      console.log("Login success", user);
+      console.log("signup success", user);
       window.location.assign("../html/products.html");
     },
     error: function(user, error) {
-      console.log("signup error", error.message);
+      if (error.message==="badref") {
+        $("#signup-ref-p")[0].innerHTML = "Incorrect";
+      }
+      else {
+          $("#signup-ref-p")[0].innerHTML = "";
+      }
+      console.log(error);
+
     }
   });
   return false;
