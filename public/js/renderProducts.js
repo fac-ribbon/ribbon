@@ -7,10 +7,10 @@ var products = (function() {
     return products.map(function(product, index){
       var attr = product.attributes;
       var html;
-      index === 0? html = "<div class='item active'>" : html = "<div class='item'>";
-      html += "<a href='payment.html?product-id=" + product.id + "'><img src=" + attr.imgurl + " alt=" + attr.giftName + "></img></a>";
-      html += "<div class='banner'><div class='carousel-caption'> <h2 class='gift-title'>" + attr.giftName + "</h2>";
-      html += "</div></div></div>";
+      index === 0 ? html = "<a class='item active imgDefault' href='payment.html?product-id=" + product.id + "'><div>" : html = "<a class='item' href='payment.html?product-id=" + product.id + "'><div>";
+      html += "<img class='imgDefault' src=" + attr.imgurl + " alt=" + attr.giftName + "></img>";
+      html += "<div class='banner'><div class='carousel-caption'><h2 class='gift-title'>" + attr.giftName + "</h2>";
+      html += "</div></div></div></a>";
       return html;
     }).join('');
   };

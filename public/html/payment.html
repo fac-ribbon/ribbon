@@ -16,6 +16,7 @@
 <body>
   <div id="main">
     <h1>Payment Page</h1>
+    <a href="products.html">Back</a>
     <div id="product-details">
       product description
     </div>
@@ -41,7 +42,7 @@
       <button id="pay-button">confirm details</button>
       <button id="details-button" class="hidden">change details</button>
     </div>
-    <form id="stripeform" method="POST" class="hidden">
+    <form id="stripeform" method="POST">
       <script id="stripescript" src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_75mYWHJNKMpDkEXD2KacBukY" data-amount="" data-name="Ribbon" data-description="" data-image="/128x128.png" data-locale="auto" data-currency="gbp">
       </script>
     </form>
