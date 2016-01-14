@@ -10,5 +10,3 @@
     window.location.assign("../index.html");
   }
 })();
-
-// setTimeout(createLogin, 2000);
