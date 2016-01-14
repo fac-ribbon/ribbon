@@ -35,7 +35,7 @@ var chargeObj = paymentData => ({
   amount: paymentData.amount,
   currency: "gbp",
   source: paymentData.stripeToken,
-  description: "example charge" //paymentData.example
+  description: "example charge", //paymentData.example
   receipt_email: paymentData.email ;
 });
 
