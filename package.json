@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "env2": "^2.0.4",
+    "hapi": "^12.1.0",
     "parse": "^1.6.14",
     "stripe": "^4.1.0",
     "url": "^0.11.0"
