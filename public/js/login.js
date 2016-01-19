@@ -17,6 +17,7 @@ $("#email").submit(function(event) {
     console.log("user exists:", exists);
     if (exists === true) {
       $("form").toggleClass("hidden");
+      $("#login-pin").focus();
     }
     else {
       $("#login-email-p")[0].innerHTML = "Incorrect. Try again or <a href='../index.html'>Sign Up!</a>";
