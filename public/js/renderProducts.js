@@ -9,8 +9,11 @@ var products = (function() {
       var html;
       index === 0 ? html = "<a class='item active imgDefault' href='payment.html?productId=" + product.id + "'><div>" : html = "<a class='item' href='payment.html?productId=" + product.id + "'><div>";
       html += "<img class='imgDefault' src=" + attr.imgurl + " alt=" + attr.giftName + "></img>";
-      html += "<div class='banner'><div class='carousel-caption'><h2 class='gift-title'>" + attr.giftName + "</h2>";
-      html += "</div></div></div></a>";
+      html += "<div class='banner'>";
+      html += "<div class='carousel-caption'><h2 class='gift-title'>";
+      html += attr.giftName + "</br>" + formatPrice(attr.PricePence);
+      html += "</h2></div>";
+      html += "</div></div></a>";
       return html;
     }).join('');
   };

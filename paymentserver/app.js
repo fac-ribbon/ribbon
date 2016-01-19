@@ -28,7 +28,7 @@ var buyItem = function(productData, callback) {
     error: function() {
       setTimeout(function() {
         buyItem(productData, callback);
-      }, 1000)
+      }, 1000);
     }
   });
 }
@@ -38,7 +38,7 @@ var chargeObj = paymentData => ({
   currency: "gbp",
   source: paymentData.stripeToken,
   description: "example charge", //paymentData.example
-  receipt_email: paymentData.email ;
+  receipt_email: paymentData.email
 });
 
 var makePayment = function(paymentData, callbackError, callbackSuccess) {

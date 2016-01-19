@@ -49,6 +49,7 @@
   var buildProductHTML = function(productData) {
     var html =  "<div class='product'>";
     html += "<h2>" + productData.name + "</h2>";
+    html += "<h3> " + formatPrice(productData.pence) + "</h3>";
     html += "<p>" + productData.desc + "</p>";
     html += "<img src='" + productData.url + "'></img>";
     return html;
@@ -66,7 +67,7 @@
       error: function(error) {
         callback('ops, something went wrong' + error.message);
       }
-    })
+    });
   };
 
   var saveDeliveryDetails = function() {
