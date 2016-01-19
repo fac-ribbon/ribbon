@@ -24,8 +24,14 @@ img{
   padding-bottom: 1em;
 
 }
+
+#pay-button{
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+}
 #details-button{
   margin-bottom: 1em;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .product{
