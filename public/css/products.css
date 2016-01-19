@@ -55,16 +55,11 @@ nav {
   position: absolute;
   top: 0;
   right: 0;
-  overflow: hidden;
-  border: none;
-  padding: 0;
-  height: 3em;
-  display: table-cell;
-  vertical-align: middle;
 }
 
 .logout img{
   height: 2em;
   width: auto;
   margin-top: 0.5em;
+  margin-right: 0.2em;
 }
