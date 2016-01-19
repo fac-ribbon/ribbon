@@ -17,32 +17,33 @@
 
 <body>
   <div id="main">
-    <h1>Payment Page</h1>
-    <a href="products.html">Back</a>
     <div id="product-details">
       product description
     </div>
+    <a href="products.html">Back</a>
 
     <div id="order-details">
+      <div class="container-fluid">
+
       <form id="details">
         <p>Delivery Details</p>
-        <input name="name" placeholder="RECIPIENT NAME"></input>
+        <input name="name" placeholder="Recipient Name"></input>
         <br>
-        <input name="addressl1" placeholder="ADDRESS LINE ONE"></input>
+        <input name="addressl1" placeholder="Address Line One"></input>
         <br>
-        <input name="addressl2" placeholder="ADDRESS LINE TWO"></input>
+        <input name="addressl2" placeholder="Address Line Two"></input>
         <br>
-        <input name="city" placeholder="CITY"></input>
+        <input name="city" placeholder="City"></input>
         <br>
-        <input name="postCode" placeholder="POST CODE"></input>
+        <input name="postCode" placeholder="Post Code"></input>
         <br>
-        <input name="giftMessage" placeholder="GIFT MESSAGE (optional)"></input>
+        <input name="giftMessage" placeholder="Gift Message (optional)"></input>
         <br>
-        <input name="staffMessage" placeholder="MESSAGE FOR SALES DEPT AT RIBBON"></input>
+        <input name="staffMessage" placeholder="Message For Ribbon"></input>
         <br>
       </form>
-      <button id="pay-button">confirm details</button>
-      <button id="details-button" class="hidden">change details</button>
+      <button id="pay-button" onclick="ScrollToBottom()">Confirm Details</button>
+      <button id="details-button" class="hidden" onclick="ScrollToBottom()">Change Details</button>
     </div>
     <form id="stripeform" method="POST" class="hidden">
       <script
@@ -59,9 +60,19 @@
       </script>
     </form>
   </div>
+
+  </div>
   <script src="../js/initialiseParse.js"></script>
   <script src="../js/common.js"></script>
   <script src="../js/payment.js"></script>
+  <script>
+    var ScrollToBottom = function() {
+      setTimeout(function(){ console.log("ScrollToBottom");
+      window.scrollTo(0, 100);}, 50);
+    }
+
+  </script>
+
 </body>
 
 </html>
