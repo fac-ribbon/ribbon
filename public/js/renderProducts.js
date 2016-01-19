@@ -8,12 +8,11 @@ var products = (function() {
       var attr = product.attributes;
       var html;
       index === 0 ? html = "<a class='item active imgDefault' href='payment.html?productId=" + product.id + "'><div>" : html = "<a class='item' href='payment.html?productId=" + product.id + "'><div>";
-      html += "<img class='imgDefault' src=" + attr.imgurl + " alt=" + attr.giftName + "></img>";
-      html += "<div class='banner'>";
+      html += "<img class='imgDefault giftPic' src=" + attr.imgurl + " alt=" + attr.giftName + "></img>";
       html += "<div class='carousel-caption'><h2 class='gift-title'>";
       html += attr.giftName + "</br>" + formatPrice(attr.PricePence);
       html += "</h2></div>";
-      html += "</div></div></a>";
+      html += "</div></a>";
       return html;
     }).join('');
   };
@@ -61,7 +60,9 @@ var products = (function() {
 products.renderProducts(function(html) {
   document.getElementById('products').innerHTML = html;
   products.attachBuyEvents();
-  $('#products-carousel').carousel({});
+  $('#products-carousel').carousel({
+    interval: false
+  });
 });
 
 $("#logout").click(function(event){
