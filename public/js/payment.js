@@ -30,7 +30,7 @@
   var getProductId = function() {
     var query = window.location.search.substring(1);
     var vars = query.split("&");
-    return vars.filter(function(elem){
+    return vars.filter(function(elem) {
       return elem.split("=")[0] === "productId";
     })[0].split("=")[1];
   };
@@ -47,7 +47,7 @@
   };
 
   var buildProductHTML = function(productData) {
-    var html =  "<div class='product'>";
+    var html = "<div class='product'>";
     html += "<h2>" + productData.name + "</h2>";
     html += "<h3> " + formatPrice(productData.pence) + "</h3>";
     html += "<p>" + productData.desc + "</p>";
@@ -60,7 +60,7 @@
     var query = new Parse.Query(Gifts);
     query.equalTo("objectId", productId);
     query.find({
-      success: function(result){
+      success: function(result) {
         var productData = formatProductData(result);
         callback(buildProductHTML(productData))
       },
@@ -70,14 +70,20 @@
     });
   };
 
+  var ScrollToBottom = function() {
+    console.log("ScrollToBottom");
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
   var saveDeliveryDetails = function() {
     var productId = getProductId();
     var action = "https://ribbonpaymentserver.herokuapp.com/pay";
     action += "?" + [].map.call(document
       .getElementById("details")
-      .getElementsByTagName('input'), function(elem) {
-      return elem.name + "=" + elem.value + "&"
-    }).join('') + "productId=" + productId + "&email=" + Parse.User.current().get("username");
+      .getElementsByTagName('input'),
+      function(elem) {
+        return elem.name + "=" + elem.value + "&"
+      }).join('') + "productId=" + productId + "&email=" + Parse.User.current().get("username");
     $("#stripeform").attr("action", action);
   };
 }());

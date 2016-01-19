@@ -12,14 +12,35 @@ body {
 }
 
 #index {
-  background-color: #030800;
+  background-color: white;
   margin: 0;
   padding-top: 4em;
 }
+img{
+  width: 100%
+}
+
+#details{
+  padding-bottom: 1em;
+
+}
+#details-button{
+  margin-bottom: 1em;
+}
+
+.product{
+  padding-bottom: 1em;
+}
+
+#main{
+  text-align: center;
+}
+
 .index-a {
   text-decoration: none;
   color: black;
 }
+
 
 /*#index-login-a .index-halfpage{
   background-color: #701332;
@@ -32,6 +53,8 @@ body {
 .ribbon-form {
   text-align: center;
 }
+
+
 
 .index-outer {
   text-align: center;
