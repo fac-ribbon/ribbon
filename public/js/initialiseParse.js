@@ -10,3 +10,8 @@
     window.location.assign("../index.html");
   }
 })();
+
+$("#logout").click(function(event){
+  Parse.User.logOut();
+  window.location.assign("../index.html");
+});
