@@ -70,12 +70,7 @@
     });
   };
 
-  var ScrollToBottom = function() {
-    console.log("ScrollToBottom");
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-
-  var saveDeliveryDetails = function() {
+    var saveDeliveryDetails = function() {
     var productId = getProductId();
     var action = "https://ribbonpaymentserver.herokuapp.com/pay";
     action += "?" + [].map.call(document
