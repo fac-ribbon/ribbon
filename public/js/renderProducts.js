@@ -64,8 +64,3 @@ products.renderProducts(function(html) {
     interval: false
   });
 });
-
-$("#logout").click(function(event){
-  Parse.User.logOut();
-  window.location.assign("../index.html");
-});

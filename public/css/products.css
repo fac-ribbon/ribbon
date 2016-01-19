@@ -32,3 +32,33 @@
   color: grey;
   padding: 0;
 }
+
+nav {
+  margin-top: 0;
+  width: 100%;
+  height: 3em;
+  background-color: #E8E8E8 ;
+  display: table;
+  overflow: hidden;
+}
+
+.title{
+  text-align: center;
+  font-size: 1.4em;
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.logout{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.logout img{
+  height: 2em;
+  width: auto;
+  margin-top: 0.5em;
+  margin-right: 0.2em;
+}
