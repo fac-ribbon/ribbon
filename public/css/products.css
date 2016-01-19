@@ -46,7 +46,6 @@ nav {
 .title{
   text-align: center;
   font-size: 1.4em;
-  /*padding-left: 0.5em;*/
   width: 100%;
   display: table-cell;
   vertical-align: middle;
@@ -59,13 +58,13 @@ nav {
   overflow: hidden;
   border: none;
   padding: 0;
-  /*height: 3em;*/
-  /*display: table-cell;
-  vertical-align: middle;*/
+  height: 3em;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .logout img{
-  height: 3em;
+  height: 2em;
   width: auto;
-  color: red;
+  margin-top: 0.5em;
 }
