@@ -10,7 +10,7 @@ Parse.initialize("nhFykJoUL5INlggaBWAYf99p7xeu06bOuyhc4iSx", "8xjV4an8FK3OngCErK
 
 var getPrice = function(productId, callback) {
   console.log(productId);
-  Parse.Cloud.run("getItemCost", {productId: "QfpY10Wud3"}).then(function(result) {
+  Parse.Cloud.run("getItemCost", productId).then(function(result) {
     callback(JSON.parse(result)[0]);
   });
 };
