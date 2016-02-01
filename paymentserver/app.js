@@ -56,6 +56,7 @@ var makePayment = function(paymentData, callbackError, callbackSuccess) {
             if (!success) {
                 throw new Error('This should not happen, payment with token '+ chargeData.source +'failed');
             } else {
+              console.log("TEST");
               callbackSuccess();
             }
           }
